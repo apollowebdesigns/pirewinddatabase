@@ -30,6 +30,11 @@ public class MainController {
         return getAllUsers();
     }
 
+    @GetMapping(path="/clear")
+    public @ResponseBody void remove () {
+        directionRepository.deleteAll();
+    }
+
 //    @GetMapping(path="/all")
 //    public @ResponseBody Iterable<Direction> getAllUsers() {
 //        // This returns a JSON or XML with the users
