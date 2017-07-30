@@ -18,7 +18,7 @@ public class MainController {
     private DirectionRepository directionRepository;
 
     @GetMapping(path="/add") // Map ONLY GET Requests
-    public @ResponseBody String addNewUser (@RequestParam String time
+    public @ResponseBody List<Direction> addNewUser (@RequestParam String time
             , @RequestParam String dir) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
@@ -27,7 +27,7 @@ public class MainController {
         direction.setTime(time);
         direction.setDirection(dir);
         directionRepository.save(direction);
-        return "Saved";
+        return getAllUsers();
     }
 
 //    @GetMapping(path="/all")
