@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller    // This means that this class is a Controller
 @RequestMapping(path="/rewind") // This means URL's start with /demo (after Application path)
 public class MainController {
@@ -27,9 +30,17 @@ public class MainController {
         return "Saved";
     }
 
+//    @GetMapping(path="/all")
+//    public @ResponseBody Iterable<Direction> getAllUsers() {
+//        // This returns a JSON or XML with the users
+//        return directionRepository.findAll();
+//    }
+
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Direction> getAllUsers() {
-        // This returns a JSON or XML with the users
-        return directionRepository.findAll();
+    public @ResponseBody
+    List<Direction> getAllUsers() {
+        List<Direction> result = new ArrayList<>();
+        directionRepository.findAll().forEach(result::add);
+        return result;
     }
 }
