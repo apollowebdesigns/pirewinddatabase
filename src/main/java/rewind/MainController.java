@@ -32,12 +32,19 @@ public class MainController {
         return getAllUsers();
     }
 
+    /**
+     * Clears out database, once Raspberry Pi has rewound
+     */
     @GetMapping(path="/clear")
     public @ResponseBody void remove () {
         directionRepository.deleteAll();
     }
 
 
+    /**
+     * Gets current state of the Raspberry Pi's direction
+     * @return Reverse of directions called
+     */
     @GetMapping(path="/all")
     public @ResponseBody
     List<Direction> getAllUsers() {
