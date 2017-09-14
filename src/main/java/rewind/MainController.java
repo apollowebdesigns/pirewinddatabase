@@ -2,10 +2,7 @@ package rewind;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +19,7 @@ public class MainController {
      * @param dir the endpoint to be called in the pirestservice
      * @return all current endpoints called
      */
+    @CrossOrigin
     @GetMapping(path="/add") // Map ONLY GET Requests
     public @ResponseBody List<Direction> addNewUser (@RequestParam String time
             , @RequestParam String dir) {
@@ -35,6 +33,7 @@ public class MainController {
     /**
      * Clears out database, once Raspberry Pi has rewound
      */
+    @CrossOrigin
     @GetMapping(path="/clear")
     public @ResponseBody void remove () {
         directionRepository.deleteAll();
@@ -45,6 +44,7 @@ public class MainController {
      * Gets current state of the Raspberry Pi's direction
      * @return Reverse of directions called
      */
+    @CrossOrigin
     @GetMapping(path="/all")
     public @ResponseBody
     List<Direction> getAllUsers() {
